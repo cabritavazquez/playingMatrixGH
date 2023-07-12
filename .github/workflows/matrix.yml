@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Print configs var
         run: echo "hello"
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     strategy:
