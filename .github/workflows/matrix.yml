@@ -25,7 +25,7 @@ jobs:
     needs: [read_config]
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{fromJson(needs.read_config.outputs.matrix)}}
+      matrix: ${{fromJson(needs.read_config.outputs.lambda)}}
 
     steps:
 
