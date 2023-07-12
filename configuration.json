@@ -1,6 +1,8 @@
 {
-    "lambda_name1": "nuevaLambda1",
-    "lambda_name2": "nuevaLambda2",
-    "lambda_name3": "nuevaLambda3",
-    "lambda_name4": "nuevaLambda4"
+    "lambda_name": [
+        "lambda1",
+        "lambda2",
+        "lambda3",
+        "lambda4"
+    ]
 }
