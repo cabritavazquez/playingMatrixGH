@@ -3,7 +3,7 @@ name: Github Actions Matrix
 on:
   workflow_dispatch:
 jobs:
-  get_tags:
+  read_config:
     runs-on: ubuntu-latest
     steps:
       - name: Print configs var
@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [lambda1,lambda2,lambda3]
 
     steps:
       - name: Checkout repository
@@ -21,4 +21,4 @@ jobs:
 
       - name: Display Matrix Values
         run: |
-          echo "Operating System: ${{ matrix.os }}"
+          echo "Deploying lambda: ${{ matrix.os }}"
