@@ -8,25 +8,26 @@ jobs:
     outputs: 
       lambda: ${{steps.get-lambdas-name.outputs.matrix}}
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
       - name: Just ls
         run: ls
+        
+      - name: Get configs var
+        id: get-lambdas-name
+        run: |
+          ls
+          JSON=$(cat configuration.json)
+          echo "matrix=$JSON" >> $GITHUB_OUTPUT
+  deploy:
+    needs: [read_config]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{fromJson(needs.get-lambdas-name.outputs.matrix)}}
 
-  #     - name: Get configs var
-  #       id: get-lambdas-name
-  #       run: |
-  #         ls
-  #         JSON=$(cat configuration.json)
-  #         echo "matrix=$JSON" >> $GITHUB_OUTPUT
-  # deploy:
-  #   needs: [read_config]
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix: ${{fromJson(needs.get-lambdas-name.outputs.matrix)}}
+    steps:
 
-  #   steps:
-  #     # - name: Checkout repository
-  #     #   uses: actions/checkout@v2
-
-  #     - name: Display Matrix Values
-  #       run: |
-  #         echo "Deploying lambda"
+      - name: Display Matrix Values
+        run: |
+          echo "Deploying lambda"
